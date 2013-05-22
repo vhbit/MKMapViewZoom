@@ -7,4 +7,6 @@
     zoomLevel:(NSUInteger)zoomLevel
     animated:(BOOL)animated;
 
+- (int) getZoomLevel;
+
 @end
