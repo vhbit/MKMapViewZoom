@@ -86,4 +86,9 @@
     [self setRegion:region animated:animated];
 }
 
+- (int) getZoomLevel
+{
+    return 21 - round(log2(self.region.span.longitudeDelta * MERCATOR_RADIUS * M_PI / (180.0 * self.bounds.size.width)));
+}
+
 @end
