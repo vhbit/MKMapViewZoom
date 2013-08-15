@@ -33,8 +33,8 @@
 #pragma mark Helper methods
 
 - (MKCoordinateSpan)coordinateSpanWithMapView:(MKMapView *)mapView
-    centerCoordinate:(CLLocationCoordinate2D)centerCoordinate
-    andZoomLevel:(NSUInteger)zoomLevel
+                             centerCoordinate:(CLLocationCoordinate2D)centerCoordinate
+                                 andZoomLevel:(NSUInteger)zoomLevel
 {
     // convert center coordiate to pixel space
     double centerPixelX = [self longitudeToPixelSpaceX:centerCoordinate.longitude];
@@ -84,6 +84,10 @@
     
     // set the region like normal
     [self setRegion:region animated:animated];
+}
+
+- (int)zoomLevel {
+    return (21 - round(log2(self.region.span.longitudeDelta * MERCATOR_RADIUS * M_PI / (180.0 * self.bounds.size.width))));
 }
 
 @end
